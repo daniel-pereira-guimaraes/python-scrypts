@@ -47,7 +47,8 @@ def execute_all():
             export_countries(connection)
         except Error as e:
             print(f'Database error: {e}')
-        print("Done!")
+        else:
+            print("Done!")
 
 if __name__ == "__main__":
     execute_all()

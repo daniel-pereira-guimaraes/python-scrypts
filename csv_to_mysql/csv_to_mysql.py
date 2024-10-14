@@ -77,6 +77,8 @@ def execute_all():
         print(f"Error: {e}")
         if connection and connection.is_connected():
             connection.rollback()
+    else:
+        print("Done!")
     finally:
         if connection and connection.is_connected():
             connection.close()

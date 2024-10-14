@@ -40,10 +40,11 @@ def execute_all():
         export_countries_to_csv_file(connection)
     except Error as e:
         print(f"Error: {e}")
+    else:
+        print("Done!")
     finally:
         if connection and connection.is_connected():
             connection.close()
 
 if __name__ == "__main__":
     execute_all()
-    print("Done!")

@@ -21,7 +21,7 @@ def export_countries(connection):
         cursor.execute('SELECT * FROM country')
         export_cursor(cursor)
 
-def export_cursor(cursor, file):
+def export_cursor(cursor):
     with open(json_file_path, 'w') as file:
         file.write('[\n')
         export_rows(cursor, file)

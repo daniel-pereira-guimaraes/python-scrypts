@@ -1,7 +1,7 @@
 # Python Scripts
 
 A collection of **Python** scripts for integrations with **MySQL**, **RabbitMQ**, and **Elasticsearch**. 
-Each script performs specific tasks, organized by the type of integration.
+The scripts are organized by integration type and each one performs a specific task.
 
 ![Screenshot](images/receive-messages-and-delete-queue.png)
 

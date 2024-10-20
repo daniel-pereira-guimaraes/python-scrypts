@@ -17,14 +17,14 @@ def list_queues():
         response = requests.get(URL, auth=HTTPBasicAuth(RABBITMQ_USER, RABBITMQ_PASSWORD))
         response.raise_for_status()
         queues = filter_queues(response.json())
-        try_print_queues(queues)
+        print_queues(queues)
     except requests.exceptions.RequestException as e:
         print(f"Error accessing the RabbitMQ API: {e}")
 
 def filter_queues(queues):
     return [queue['name'] for queue in queues if queue['name'].startswith(PREFIX)]
 
-def try_print_queues(queues):
+def print_queues(queues):
     if queues:
         for queue in queues:
             print(queue)

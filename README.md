@@ -7,7 +7,7 @@ Each script performs specific tasks, organized by the type of integration.
 
 ## MySQL Scripts
 
-- **csv_to_mysql.py**: Reads data from a CSV file and inserts it into a MySQL database.
+- [**csv_to_mysql.py**](mysql/csv_to_mysql.py): Reads data from a CSV file and inserts it into a MySQL database.
 - **mysql_to_csv.py**: Exports data from a MySQL database to a CSV file.
 - **json_to_mysql.py**: Reads data from a JSON file and inserts it into a MySQL database.
 - **mysql_to_json.py**: Exports data from a MySQL database to a JSON file.

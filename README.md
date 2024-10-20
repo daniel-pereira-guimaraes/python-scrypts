@@ -28,3 +28,7 @@ The scripts are organized by integration type and each one performs a specific t
 ## License
 
 This project is licensed under the MIT License. You are free to use, modify, and distribute the code as long as you provide proper attribution to the original author.
+
+## Disclaimer
+
+These scripts interact directly with databases, queues, and services. Use them with caution, as improper usage can lead to loss of data or other unintended effects. Always ensure you have backups and test thoroughly before running in production environments.

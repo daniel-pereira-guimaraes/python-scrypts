@@ -3,6 +3,8 @@
 A collection of **Python** scripts for integrations with **MySQL**, **RabbitMQ**, and **Elasticsearch**. 
 Each script performs specific tasks, organized by the type of integration.
 
+![Screenshot](images/receive-messages-and-delete-queue.png)
+
 ## MySQL Scripts
 
 - **csv_to_mysql.py**: Reads data from a CSV file and inserts it into a MySQL database.

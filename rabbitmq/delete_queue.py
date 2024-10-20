@@ -73,17 +73,26 @@ def delete_queue(queue_name: str):
 def input_queue_name() -> str:
     return input("Queue name for delete: ")
 
-def confirm_delete() -> bool:
+def check_consumer_presence(queue_info):
+    if queue_info.get('consumers', 0) > 0:
+        raise DeleteQueueError("Cannot delete queue with consumers!")
+
+def check_message_presence(queue_info):
+    if queue_info.get('messages', 0) > 0:
+        raise DeleteQueueError("Cannot delete queue with messages!")
+
+def validate_queue_deletion(queue_name):
+    queue_info = get_queue_info(queue_name)
+    check_consumer_presence(queue_info)
+    check_message_presence(queue_info)
+
+def confirm_queue_delete() -> bool:
     return input("Confirm delete queue? (yes|no): ").lower() == "yes"
 
 def execute_all():
     queue_name = input_queue_name()
-    queue_info = get_queue_info(queue_name)
-    if queue_info.get('consumers', 0) > 0:
-        raise DeleteQueueError("Cannot delete queue with consumers!")
-    if queue_info.get('messages', 0) > 0:
-        raise DeleteQueueError("Cannot delete queue with messages!")
-    if confirm_delete():
+    validate_queue_deletion(queue_name)
+    if confirm_queue_delete():
         delete_queue(queue_name)
 
 if __name__ == "__main__":

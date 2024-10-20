@@ -9,12 +9,13 @@ from requests.auth import HTTPBasicAuth
 from urllib.parse import quote
 from colorama import Fore, init as init_colorama
 
+init_colorama()
+
 RABBITMQ_HOST = os.getenv("RABBITMQ_HOST", "localhost")
 RABBITMQ_PORT = int(os.getenv("RABBITMQ_PORT", 15672))
 RABBITMQ_VHOST = os.getenv("RABBITMQ_VHOST", "/")
 RABBITMQ_USER = os.getenv("RABBITMQ_USER", "guest")
 RABBITMQ_PASSWORD = os.getenv("RABBITMQ_PASSWORD", "guest")
-
 RABBITMQ_AUTH = HTTPBasicAuth(RABBITMQ_USER, RABBITMQ_PASSWORD)
 
 class GetQueueError(Exception):
@@ -23,7 +24,7 @@ class GetQueueError(Exception):
 class DeleteQueueError(Exception):
     pass
 
-def queue_url(queue_name):
+def queue_url(queue_name: str) -> str:
     encoded_vhost = quote(RABBITMQ_VHOST, safe='')
     return (f"http://{RABBITMQ_HOST}:{RABBITMQ_PORT}"
             f"/api/queues/{encoded_vhost}/{queue_name}")
@@ -61,7 +62,7 @@ def get_queue_info(queue_name: str):
     else:
         raise GetQueueError(get_error_message(queue_name, response))
 
-def delete_queue(queue_name):
+def delete_queue(queue_name: str):
     url = queue_url(queue_name)
     response = requests.delete(url, auth=RABBITMQ_AUTH)
     if response.status_code == 204:
@@ -86,7 +87,6 @@ def execute_all():
         delete_queue(queue_name)
 
 if __name__ == "__main__":
-    init_colorama()
     try:
         execute_all()
     except Exception as e:
